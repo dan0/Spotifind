@@ -107,8 +107,15 @@ function spotifind () {
 					results.append(foundTrack.href + ' ');
 					console.log(foundTrack);
 				}
+				else {
+					alert('Sorry, no tracks found!'); //TODO: replace alert
+				}
 			});
 		});
+	}
+
+	function cleanUP() {
+
 	}
 
 	var outputDebug = '<div id="SP-findelement">' +
