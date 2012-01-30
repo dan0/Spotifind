@@ -114,14 +114,13 @@ function spotifind () {
 		});
 	}
 
-	function cleanUP() {
+	function cleanUp() {
 
 	}
 
-	var outputDebug = '<div id="SP-findelement">' +
-	'</div>';
+	var outputDebug = $('<div id="SP-findelement"></div>');
 
-	$(outputDebug).appendTo('body').css({
+	outputDebug.appendTo('body').css({
 		'position' : 'fixed',
 		'top' : '0px',
 		'right' : '0px',
@@ -129,6 +128,17 @@ function spotifind () {
 		'width' : '200px',
 		'background-color' : '#ccc'
 	});
+
+	$('<a>X</a>')
+		.css({
+			'position' : 'absolute',
+			'top' : '5px',
+			'right' : '5px'
+		})
+		.appendTo(outputDebug)
+		.click(function() {
+			cleanUp();
+		});
 
 	$('*:not(html,body,#SP-findelement)').hover(function(event) {
 
