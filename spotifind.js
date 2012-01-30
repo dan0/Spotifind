@@ -4,6 +4,10 @@
 
 function spotifind () {
 
+	// we're only looking for tracks here
+	var baseUrl = 'http://ws.spotify.com/search/1/track.json?q=';
+
+
 	function writeOut(msg) {
 		$('#SP-findelement').html(msg);
 	}
@@ -46,18 +50,31 @@ function spotifind () {
 		return label;
 	}
 
+	/**
+	 * Select element when clicked
+	 * @param  {object} $el jQuery object
+	 */
 	function chooseElement($el) {
+		var selector = getElementCSSPath($el[0]);
+		var foundMessage = '<p>Search for songs on parts of the page like this?</p>';
+
+		$('#SP-findelement').html(foundMessage);
+		$('<button>Find Songs</button>').click(function() {
+			startSearch(selector);
+			return false;
+		}).appendTo('#SP-findelement');
+
 		$('.spf-selected').removeClass('spf-selected').css({
 			'outline': 'none'
 		});
 
-		var selector = getElementCSSPath($el[0]);
-		writeOut(selector);
-
 		$el.addClass('spf-selected').css({
 			'outline' : '2px solid red'
 		});
+	}
 
+	function startSearch(selector) {
+		alert('searching for ' + selector);
 	}
 
 	var outputDebug = '<div id="SP-findelement">' +
@@ -72,7 +89,7 @@ function spotifind () {
 		'background-color' : '#ccc'
 	});
 
-	$('*:not(html,body)').hover(function(event) {
+	$('*:not(html,body,#SP-findelement)').hover(function(event) {
 
 		event.stopPropagation(); // only select hovered element
 		if ($(this).hasClass('spf-selected')) {
