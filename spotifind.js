@@ -150,6 +150,7 @@ function spotifind () {
 			'outline' : '2px solid green'
 		}).bind('click', function() {
 			chooseElement($(this));
+			return false;
 		});
 
 	}, function() {
